@@ -1,0 +1,106 @@
+[
+    {
+      "model": "mainapp.courses",
+      "pk": 1,
+      "fields": {
+        "name": "Web Python",
+        "description": "Курс Web Python поможет Вам осовоить язык программирования Python, а также разобраться с его основными аспектами, такими как: модули, парсеры, ;\r\n* Расширения;",
+        "description_as_markdown": true,
+        "cost": "10000.50",
+        "cover": "img/course001.jpg",
+        "created": "2021-07-11T08:24:53.084Z",
+        "updated": "2021-07-11T09:06:35.322Z"
+      }
+    },
+    {
+        "model": "mainapp.courses",
+        "pk": 2,
+        "fields": {
+          "name": "Web Golang",
+          "description": "На курсе Web Golang вы изучите основы Go, получите практические навыки реализации проектов на Golang и научитесь работать в распределенных средах разработки. Вы узнаете: что такое Go как компилировать код Go как писать тесты как работает веб-сервер. Курс ведет Виктор Иванов\r\nСертифицированный специалист Google Developer Expert (Certified Technical Professional).\r\nАвтор учебника “Web-разработка на Go”. На курсе вы будете изучать основы языка программирования Go и получите практический опыт реализации проектов на Go.",
+          "description_as_markdown": false,
+          "cost": "9009.99",
+          "cover": "img/course002.jpg",
+          "created": "2021-07-11T08:28:07.397Z",
+          "updated": "2021-07-11T09:06:40.127Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 3,
+        "fields": {
+          "name": "Web JavaScript",
+          "description": "Курс JavaScript ведёт преподаватель Дмитрий Кокшаров. Он преподает в разных вузах, в том числе и в МФТИ. Дмитрий считает, что курс — это база",
+          "description_as_markdown": true,
+          "cost": "2500.15",
+          "cover": "img/course003.jpg",
+          "created": "2021-07-11T08:31:20.301Z",
+          "updated": "2021-07-11T09:06:46.902Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 4,
+        "fields": {
+          "name": "Web Java",
+          "description": "На курсе Java Вы изучите язык и фреймворк Java с самых азов до продвинутого уровня.\r\nА главное — Вы получите теоретические и практические навыки",
+          "description_as_markdown": false,
+          "cost": "10000.00",
+          "cover": "img/course004.jpg",
+          "created": "2021-07-11T08:34:10.771Z",
+          "updated": "2021-07-11T09:06:52.015Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 5,
+        "fields": {
+          "name": "Web PHP",
+          "description": "На курсе PHP Вы изучите основы PHP и получите навыки работы с PHP, такими как работа с базами данных, работа с графикой, создание сайтов, работа",
+          "description_as_markdown": false,
+          "cost": "9500.78",
+          "cover": "img/course005.jpg",
+          "created": "2021-07-11T08:36:21.087Z",
+          "updated": "2021-07-11T09:06:57.580Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 6,
+        "fields": {
+          "name": "Python AI",
+          "description": "На курсе Python AI Вы изучите создание простых нейросетей для задач машинного зрения.\r\nА также научитесь создавать и развивать более сложные ней",
+          "description_as_markdown": true,
+          "cost": "6660.66",
+          "cover": "img/course006.jpg",
+          "created": "2021-07-11T08:39:15.369Z",
+          "updated": "2021-07-11T09:07:04.253Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 7,
+        "fields": {
+          "name": "DevOps",
+          "description": "На курсе DevOps Вы изучите основы автоматизации с Python, Git, Docker и узнаете про GitHub, Jenkins и Kubernetes. Узнаете, как все это работает, ",
+          "description_as_markdown": true,
+          "cost": "7770.77",
+          "cover": "img/course007.jpg",
+          "created": "2021-07-11T08:40:33.347Z",
+          "updated": "2021-07-11T09:07:11.184Z"
+        }
+      },
+      {
+        "model": "mainapp.courses",
+        "pk": 8,
+        "fields": {
+          "name": "3D-моделирование",
+          "description": "Курс 3D-моделирования ведёт практикующий архитектор с высшим архитектурным образованием, со стажем преподавания более 7 лет.",
+          "description_as_markdown": true,
+          "cost": "5900.00",
+          "cover": "img/no_image.svg",
+          "created": "2021-07-11T08:58:28.830Z",
+          "updated": "2021-07-11T09:07:16.651Z"
+        }
+      }
+    ]
