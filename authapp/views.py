@@ -1,32 +1,24 @@
-from django.views.generic import TemplateView
+from django.contrib import messages
+from django.contrib.auth.views import LoginView
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
-class MainPageView(TemplateView):
-    template_name = "mainapp/index.html"
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        ret = super().form_valid(form)
+        message = _("Login success!<br>Hi, %(username)s") % {
+            "username": self.request.user.get_full_name()
+            if self.request.user.get_full_name()
+            else self.request.user.get_username()
+        }
+        messages.add_message(self.request, messages.INFO, mark_safe(message))
+        return ret
 
-class NewsPageView(TemplateView):
-    template_name = "mainapp/news.html"
-
-    def get_context_data(self, **kwargs):
-        # Get all previous data
-        context = super().get_context_data(**kwargs)
-        # Create your own data
-        context["news_title"] = "Громкий новостной заголовок"
-        context[
-            "news_preview"
-        ] = "Предварительное описание, которое заинтересует каждого"
-        return context
-
-class CoursesPageView(TemplateView):
-    template_name = "mainapp/courses_list.html"
-
-
-class ContactsPageView(TemplateView):
-    template_name = "mainapp/contacts.html"
-
-
-class DocSitePageView(TemplateView):
-    template_name = "mainapp/doc_site.html"
-
-
-class LoginPageView(TemplateView):
-    template_name = "mainapp/login.html" 
+    def form_invalid(self, form):
+        for _unused, msg in form.error_messages.items():
+            messages.add_message(
+                self.request,
+                messages.WARNING,
+                mark_safe(f"Something goes worng:<br>{msg}"),
+            )
+        return self.render_to_response(self.get_context_data(form=form))
