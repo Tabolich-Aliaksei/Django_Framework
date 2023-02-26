@@ -48,20 +48,6 @@ class NewsUpdateView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy("mainapp:news")
     permission_required = ("mainapp.change_news",)
 
-
-class NewsDeleteView(PermissionRequiredMixin, DeleteView):
-    model = mainapp_models.News
-    success_url = reverse_lazy("mainapp:news")
-    permission_required = ("mainapp.delete_news",)
-
-class CoursesListView(TemplateView):
-    template_name = "mainapp/courses_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(CoursesListView, self).get_context_data(**kwargs)
-        context["objects"] = mainapp_models.Courses.objects.all()[:7]
-        return context
-
 class CoursesDetailView(TemplateView):
     template_name = "mainapp/courses_detail.html"
 
@@ -73,20 +59,27 @@ class CoursesDetailView(TemplateView):
         context["teachers"] = mainapp_models.CourseTeachers.objects.filter(course=context["course_object"])
         if not self.request.user.is_anonymous:
             if not mainapp_models.CourseFeedback.objects.filter(
-                course=context["course_object"], user=self.request.user
+                                course=context["course_object"], user=self.request.user
             ).count():
                 context["feedback_form"] = mainapp_forms.CourseFeedbackForm(
                     course=context["course_object"], user=self.request.user
                 )
-
-        cached_feedback = cache.get(f"feedback_list_{pk}")
+                        cached_feedback = cache.get(f"feedback_list_{pk}")
         if not cached_feedback:
             context["feedback_list"] = (
                 mainapp_models.CourseFeedback.objects.filter(course=context["course_object"])
                 .order_by("-created", "-rating")[:5]
                 .select_related()
             )
-                        cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # 5 minutes
+            cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # 5 minutes
+
+                        # Archive object for tests --->
+            import pickle
+
+            with open(f"mainapp/fixtures/005_feedback_list_{pk}.bin", "wb") as outf:
+                pickle.dump(context["feedback_list"], outf)
+            # <--- Archive object for tests
+
         else:
             context["feedback_list"] = cached_feedback
 
@@ -118,7 +111,7 @@ class ContactsPageView(TemplateView):
                     "lock",
                     timeout=300,
                 )
-                                messages.add_message(self.request, messages.INFO, _("Message sended"))
+                messages.add_message(self.request, messages.INFO, _("Message sended"))
                 mainapp_tasks.send_feedback_mail.delay(
                     {
                         "user_id": self.request.POST.get("user_id"),
